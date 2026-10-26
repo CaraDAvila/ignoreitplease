@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="UTF-8"> <!--Honestly, just don't edit this part. Do edit the title obviously-->
+    <title>Application</title>
+</head>
+
+<body>
+<h1>Headder</h1> <!-- Whatever title -->
+
+<label> Number <input type="number" id="numberVariable"> </label> <!-- Field to be filled with user input. In this case, a number. (see input type) -->
+
+<select id="options"> <!-- Dropdown menu. Does manipulate user input sortakinda. -->
+    <option value="methodA">Method A name</option>
+    <option value="methodB">Method B name</option>
+</select>
+
+<button onclick="metodo()"> Method C name</button> <!-- Button runs method upon being clicked. -->
+
+<label>
+    Label text Results <input type="text" id="result" readonly> <!-- Displays results. Read only. -->
+</label>
+
+<script>
+async function metodo(){
+    const number= document.getElementById("numberVariable").value;
+    const options= document.getElementById("options").value;
+
+
+    const url= `/application/${options}?number=${number}`;
+    const response=await fetch(url);
+
+    const field = document.getElementById("result")
+    if (response.ok){
+        field.value=await response;
+    }else{
+        field.value="Error message"
+    }
+
+}
+</script>
+
+</body>
+</html>
